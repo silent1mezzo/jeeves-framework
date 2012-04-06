@@ -16,7 +16,6 @@ setup(
     scripts = ['jeeves/bin/jeeves-admin.py'],
 
     install_requires = [
-        "rapidsms",
         "twisted",
     ],
 
