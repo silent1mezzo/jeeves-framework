@@ -1,7 +1,32 @@
+import os
+
 from distutils.core import setup
 from jeeves import VERSION
 # Dynamically calculate the version based on jeeves.VERSION.
 
+def fullsplit(path, result=None):
+    """
+    Split a pathname into components (the opposite of os.path.join) in a
+    platform-neutral way.
+    """
+    if result is None:
+        result = []
+    head, tail = os.path.split(path)
+    if head == '':
+        return [tail] + result
+    if head == path:
+        return result
+    return fullsplit(head, [tail] + result)
+
+jeeves_dir = 'jeeves'
+packages = []
+for dirpath, dirnames, filenames in os.walk(jeeves_dir):
+    # Ignore dirnames that start with '.'
+    for i, dirname in enumerate(dirnames):
+        if dirname.startswith('.'):
+            del dirnames[i]
+    if '__init__.py' in filenames:
+        packages.append('.'.join(fullsplit(dirpath)))
 
 setup(
     name = "jeeves-framework",
@@ -13,6 +38,7 @@ setup(
     description = 'A Python IRC Bot Framework. Easily create IRC bots with a single command',
     long_description = open('README.rst').read(),
     download_url = '',
+    packages=packages,
     scripts = ['jeeves/bin/jeeves-admin.py'],
 
     install_requires = [
