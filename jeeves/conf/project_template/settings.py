@@ -10,6 +10,6 @@ REALNAME = 'Jeeves Bot: A Framework for creating IRC Bots'
 CHANNEL = '#jeeves'
 
 PLUGINS = (
-    'jeeves.plugins.common.CopyCat',
-    'jeeves.plugins.common.Google',
+    'plugins.example.ExampleGenericPlugin',
+    'plugins.example.ExampleCommandPlugin',
 )
