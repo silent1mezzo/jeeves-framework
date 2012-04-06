@@ -1,7 +1,7 @@
 Development Lead
 ````````````````
 
-- Adam McKerlie (silent1mezzo)
+- `Adam McKerlie <https://github.com/silent1mezzo>`_ 
 
 
 Contributors
