@@ -1,11 +1,11 @@
 from distutils.core import setup
-
+from jeeves import VERSION
 # Dynamically calculate the version based on jeeves.VERSION.
-version = __import__('jeeves').get_version()
+
 
 setup(
     name = "jeeves-framework",
-    version = version,
+    version = VERSION,
     license="BSD",
     url = 'http://procrastinatingdev.com/jeeves/',
     author = 'Adam McKerlie',
