@@ -17,7 +17,7 @@ setup(
 
     install_requires = [
         "rapidsms",
-        "django-uni-form"
+        "twisted",
     ],
 
     classifiers = [
