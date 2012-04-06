@@ -44,7 +44,15 @@ setup(
     install_requires = [
         "twisted",
     ],
-
+    packages=[
+        'jeeves',
+        'jeeves/bin',
+        'jeeves/core',
+        'jeeves/conf',
+        'jeeves/plugins',
+        'jeeves/tests',
+        'jeeves/utils',
+    ],
     classifiers = [
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
