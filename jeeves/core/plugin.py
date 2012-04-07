@@ -1,6 +1,7 @@
 from jeeves.core import exceptions
 
 class Plugin(object):
+    help_text = ''
 
     def __init__(self, **kwargs):
         self.protocol = kwargs['protocol']
@@ -10,6 +11,10 @@ class Plugin(object):
 
     def say(self, channel, msg):
         self.protocol.msg(channel, msg)
+
+    @property
+    def help_text(self):
+        return self.help_text
 
     @property
     def name(self):
