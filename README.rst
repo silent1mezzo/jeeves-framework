@@ -18,7 +18,4 @@ The following four commands will get a basic IRC bot up and running. Default plu
 
 Upcoming Features
 +++++++++++++++++
-Here's an idea dump for upcoming features
-
-* Admin plugin (Basic IRC administration commands)
-* Google plugin (Link shortening, search)
+You can check out our `Issues page  <https://github.com/silent1mezzo/jeeves-framework/issues?labels=feature&sort=created&direction=desc&state=open&page=1>`_ for all of the upcoming features.
