@@ -2,6 +2,7 @@ from jeeves.core.plugin import CommandPlugin, GenericPlugin
 
 class ExampleGenericPlugin(GenericPlugin):
     name = 'Example Generic Plugin'
+    help_text = 'This is the help text for a generic plugin.'
 
     def __init__(self, *args, **kwargs):
         super(ExampleGenericPlugin, self).__init__(self.name, *args, **kwargs)
@@ -11,6 +12,7 @@ class ExampleGenericPlugin(GenericPlugin):
 
 class ExampleCommandPlugin(CommandPlugin):
     name = 'Example Command Plugin'
+    help_text = 'This is the help text for a command plugin.'
     command = 'example'
 
     def __init__(self, *args, **kwargs):
