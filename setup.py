@@ -1,33 +1,49 @@
 import os
+import sys
+import jeeves
 
-from distutils.core import setup
-from jeeves import VERSION
+try:
+    from setuptools import setup
+except ImportError:
+    from distutils.core import setup
+
+if sys.argv[-1] == 'publish':
+    os.system('python setup.py sdist upload')
+    sys.exit()
+
+if sys.argv[-1] == 'test':
+    os.system('python tests/test_jeeves.py')
+    sys.exit()
+
+required = ['twisted', 'requests', ]
+packages = [
+    'jeeves',
+    'jeeves.bin',
+    'jeeves.conf',
+    'jeeves.conf.project_template',
+    'jeeves.conf.project_template.plugins',
+    'jeeves.core',
+    'jeeves.core.handlers',
+    'jeeves.core.management',
+    'jeeves.plugins',
+    'jeeves.tests',
+    'jeeves.utils',
+]
 
 setup(
-    name = "jeeves-framework",
-    version = VERSION,
-    license="BSD",
-    url = 'http://procrastinatingdev.com/jeeves/',
-    author = 'Adam McKerlie',
-    author_email = 'adammckerlie@gmail.com',
-    description = 'A Python IRC Bot Framework. Easily create IRC bots with a single command',
-    long_description = open('README.rst').read(),
-    download_url = '',
-    scripts = ['jeeves/bin/jeeves-admin.py'],
-
-    install_requires = [
-        "twisted",
-    ],
-    packages=[
-        'jeeves',
-        'jeeves/bin',
-        'jeeves/core',
-        'jeeves/conf',
-        'jeeves/plugins',
-        'jeeves/tests',
-        'jeeves/utils',
-    ],
-    classifiers = [
+    name="jeeves-framework",
+    version=jeeves.VERSION,
+    license=open("LICENSE.rst").read(),
+    url='http://procrastinatingdev.com/jeeves/',
+    author='Adam McKerlie',
+    author_email='adammckerlie@gmail.com',
+    description='A Python IRC Bot Framework. Easily create IRC bots with a single command',
+    long_description=open('README.rst').read(),
+    download_url='',
+    install_requires=required,
+    packages=packages,
+    scripts=['jeeves/bin/jeeves-admin.py'],
+    classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
