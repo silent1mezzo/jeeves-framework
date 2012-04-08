@@ -41,7 +41,8 @@ class BaseHandler(object):
 
             if hasattr(pg_instance, 'command'):
                 self._command_plugins.append(pg_instance)
-                self._commands[pg_instance.command] = pg_instance.handle_message
+                for command in pg_instance.command:
+                    self._commands[pg_instance.command] = pg_instance.handle_message
             else:
                 self._generic_plugins.append(pg_instance)
 
