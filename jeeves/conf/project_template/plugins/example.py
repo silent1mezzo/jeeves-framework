@@ -13,10 +13,10 @@ class ExampleGenericPlugin(GenericPlugin):
 class ExampleCommandPlugin(CommandPlugin):
     name = 'Example Command Plugin'
     help_text = 'This is the help text for a command plugin.'
-    command = 'example'
+    command = ['example', ]
 
     def __init__(self, *args, **kwargs):
-        super(Google, self).__init__(self.name, self.command, *args, **kwargs)
+        super(ExampleCommandPlugin, self).__init__(self.name, self.command, *args, **kwargs)
 
     def handle_message(self, channel, message):
         self.say(channel, "I am a Command Plugin")
