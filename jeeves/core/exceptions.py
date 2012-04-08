@@ -9,3 +9,6 @@ class InvalidCommand(JeevesException):
 
 class ImproperlyConfigured(JeevesException):
     pass
+
+class InvalidPlugin(JeevesException):
+    pass
