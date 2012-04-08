@@ -2,7 +2,7 @@ from jeeves.core.plugin import CommandPlugin
 
 class HelpPlugin(CommandPlugin):
     name = 'Help Plugin'
-    command = 'help'
+    command = ['help', '-h']
 
     def __init__(self, *args, **kwargs):
         super(HelpPlugin, self).__init__(self.name, self.command, *args, **kwargs)
@@ -12,3 +12,4 @@ class HelpPlugin(CommandPlugin):
 
     @property
     def help_text(self):
+        self.say("usage: Jeeves [comand] msg")
