@@ -3,7 +3,7 @@ from jeeves.core import exceptions
 from jeeves.utils import importlib, utils
 
 class BaseHandler(object):
-    def __init__(self, protocol):
+    def __init__(self, protocol=None):
         self.protocol = protocol
 
         self._command_plugins = []
@@ -34,15 +34,16 @@ class BaseHandler(object):
 
             try:
                 pg_instance = pg_class(protocol=self.protocol)
-            except exceptions.NotImplemented, e:
-                continue
             except TypeError, e:
-                raise exceptions.InvalidCommand('Plugins class "%s" does not provide a command: %s' % (pg_class, e))
+                raise exceptions.InvalidPlugin('Plugins class "%s" does not provide a command: %s' % (pg_class, e))
 
             if hasattr(pg_instance, 'command'):
                 self._command_plugins.append(pg_instance)
-                for command in pg_instance.command:
+                if isinstance(pg_instance.command, str):
                     self._commands[pg_instance.command] = pg_instance.handle_message
+                else:
+                    for command in pg_instance.command:
+                        self._commands[command] = pg_instance.handle_message
             else:
                 self._generic_plugins.append(pg_instance)
 
