@@ -1,0 +1,15 @@
+language: python
+python:
+    - "2.5"
+    - "2.6"
+    - "2.7"
+
+# Installs the dependencies
+install: pip install -r requirements.txt --use-mirrors
+
+# Only runs on master
+branches:
+  only:
+    - master
+
+script: python jeeves/tests/test_jeeves.py
