@@ -1,5 +1,6 @@
 import sys
 
+from jeeves import __version__ as jeeves_version
 from jeeves.conf import settings
 from jeeves.core.handlers import base
 
@@ -11,6 +12,7 @@ class Bot(irc.IRCClient):
 
     def __init__(self):
         self.handler = base.BaseHandler(self)
+        print "Jeeves version %s" % jeeves_version
 
     def signedOn(self):
         #Initialize Plugins
@@ -18,10 +20,10 @@ class Bot(irc.IRCClient):
 
         #Run any plugins on signon
         self.join(self.factory.channel)
-        print "Signed on as %s." % (self.nickname,)
+        print "Signed on as %s." % self.nickname
 
     def joined(self, channel):
-        print "Joined %s." % (channel,)
+        print "Joined %s." % channel
 
     def privmsg(self, user, channel, msg):
         self.handler.message(user, channel, msg)
