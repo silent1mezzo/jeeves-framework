@@ -24,8 +24,8 @@ class PluginsTestSuite(unittest.TestCase):
 
     def test_load(self):
         settings.PLUGINS = [
-            'jeeves.tests.plugin_test.ExampleGenericPlugin',
-            'jeeves.tests.plugin_test.ExampleCommandPlugin',
+            'tests.plugin_test.ExampleGenericPlugin',
+            'tests.plugin_test.ExampleCommandPlugin',
         ]
 
         self.handler.load_plugins()
@@ -33,22 +33,22 @@ class PluginsTestSuite(unittest.TestCase):
         self.assertEqual(1, len(self.handler._generic_plugins))
 
         settings.PLUGINS = [
-            'jeeves.tests.plugin_test.ExampleNoNamePlugin',
+            'tests.plugin_test.ExampleNoNamePlugin',
         ]
         self.assertRaises(InvalidPlugin, self.handler.load_plugins)
 
         settings.PLUGINS = [
-            'jeeves.tests.plugin_test.ExampleNoCommandPlugin',
+            'tests.plugin_test.ExampleNoCommandPlugin',
         ]
         self.assertRaises(InvalidPlugin, self.handler.load_plugins)
 
         settings.PLUGINS = [
-            'jeeves.tests.plugin_test.NoneExistent',
+            'tests.plugin_test.NoneExistent',
         ]
         self.assertRaises(ImproperlyConfigured, self.handler.load_plugins)
 
         settings.PLUGINS = [
-            'jeeves.tests.test.NoneExistent',
+            'tests.test.NoneExistent',
         ]
         self.assertRaises(ImproperlyConfigured, self.handler.load_plugins)
 

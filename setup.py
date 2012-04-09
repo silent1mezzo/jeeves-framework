@@ -12,7 +12,7 @@ if sys.argv[-1] == 'publish':
     sys.exit()
 
 if sys.argv[-1] == 'test':
-    os.system('python jeeves/tests/test_jeeves.py')
+    os.system('python tests/test_jeeves.py')
     sys.exit()
 
 required = ['twisted', 'requests', ]
