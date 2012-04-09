@@ -1,7 +1,7 @@
 import os
 import unittest
 
-os.environ.setdefault("JEEVES_SETTINGS_MODULE", "jeeves.conf.base_settings")
+os.environ.setdefault("JEEVES_SETTINGS_MODULE", "jeeves.conf.project_template.settings")
 from jeeves.conf import settings
 from jeeves.core.handlers import base
 from jeeves.core.exceptions import InvalidPlugin, ImproperlyConfigured

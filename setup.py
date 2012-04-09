@@ -32,7 +32,7 @@ packages = [
 
 setup(
     name="jeeves-framework",
-    version=jeeves.VERSION,
+    version=jeeves.__version__,
     license=open("LICENSE.rst").read(),
     url='http://procrastinatingdev.com/jeeves/',
     author='Adam McKerlie',

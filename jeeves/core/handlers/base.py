@@ -51,7 +51,7 @@ class BaseHandler(object):
         user = user.split('!', 1)[0]
 
         nick, command, message = utils.parse_message(msg, self._commands.keys())
-
+        print nick, command, message
         for plugin in self._generic_plugins:
             plugin.handle_message(channel, msg)
 
