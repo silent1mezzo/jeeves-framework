@@ -52,7 +52,6 @@ class PluginsTestSuite(unittest.TestCase):
         ]
         self.assertRaises(ImproperlyConfigured, self.handler.load_plugins)
 
-
 """
     Test Suite for Jeeves.core.management
 """
