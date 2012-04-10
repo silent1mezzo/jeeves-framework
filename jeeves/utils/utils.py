@@ -31,9 +31,10 @@ def parse_message(message, commands):
         nickname = None
 
     for command in commands:
-        if command.lower() == tokenized_msg[0]:
-            plugin_command = command
-            tokenized_msg = pop_message(tokenized_msg, command.lower())
+        if tokenized_msg:
+            if command.lower() == tokenized_msg[0]:
+                plugin_command = command
+                tokenized_msg = pop_message(tokenized_msg, command.lower())
 
     message = ' '.join(tokenized_msg)
     return (nickname, plugin_command, message)
