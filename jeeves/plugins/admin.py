@@ -28,7 +28,7 @@ class HelpPlugin(CommandPlugin):
     @property
     def help_text(self):
         help_text = [
-            "usage: Jeeves: [command] msg",
+            "usage: Jeeves: [help|-h] [list_commands] [command_name]",
             "To list available plugins `Jeeves: help list_commands`",
             "To get specific help for a plugin `Jeeves: help [command_name]`",
         ]
