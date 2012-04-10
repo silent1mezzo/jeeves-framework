@@ -15,7 +15,7 @@ Usage
 +++++
 The following four commands will get a basic IRC bot up and running. Default plugins are in the works for future releases.
 
-* \`pip install git+git://github.com/silent1mezzo/jeeves-framework.git`
+* \`pip install jeeves-framework` or \`pip install git+git://github.com/silent1mezzo/jeeves-framework.git`
 * \`jeeves-admin.py startbot <name>`
 * \`cd <name>`
 * \`python bot.py runbot`
