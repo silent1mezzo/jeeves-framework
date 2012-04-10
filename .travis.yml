@@ -5,7 +5,9 @@ python:
     - "2.7"
 
 # Installs the dependencies
-install: pip install -r requirements.txt --use-mirrors
+install:
+    - pip install . --use-mirrors
+    - pip install -r requirements.txt --use-mirrors
 
 # Only runs on master
 branches:
