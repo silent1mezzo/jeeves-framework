@@ -1,5 +1,8 @@
 Jeeves Framework
 ================
+
+.. image:: https://secure.travis-ci.org/silent1mezzo/jeeves-framework.png?branch=develop
+
 The Jeeves Framework is a Python IRC library that makes creating and running IRC bots. A few of the core principles were borrowed from `Django <http://djangoproject.com>`_. The basic idea came when I read about Jessamyn Smith's `Talk Balk Bot <https://github.com/jessamynsmith/talkbackbot>`_.  
 
 Prerequisites
