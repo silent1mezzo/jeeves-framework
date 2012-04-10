@@ -15,7 +15,7 @@ if sys.argv[-1] == 'test':
     os.system('python tests/test_jeeves.py')
     sys.exit()
 
-required = ['twisted', 'requests', ]
+required = ['twisted', ]
 packages = [
     'tests',
     'docs',
