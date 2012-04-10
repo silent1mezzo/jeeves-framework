@@ -6,8 +6,7 @@ class BaseHandler(object):
     def __init__(self, protocol=None):
         self.protocol = protocol
 
-        self._command_plugins = []
-        self._commands = {}
+        self._command_plugins = {}
         self._generic_plugins = []
 
     def load_plugins(self):
@@ -33,27 +32,26 @@ class BaseHandler(object):
                 raise exceptions.ImproperlyConfigured('Plugins module "%s" does not define a "%s" class' % (pg_module, pg_classname))
 
             try:
-                pg_instance = pg_class(protocol=self.protocol)
+                pg_instance = pg_class(handler=self, protocol=self.protocol)
             except TypeError, e:
                 raise exceptions.InvalidPlugin('Plugins class "%s" does not provide a command: %s' % (pg_class, e))
 
             if hasattr(pg_instance, 'command'):
-                self._command_plugins.append(pg_instance)
                 if isinstance(pg_instance.command, str):
-                    self._commands[pg_instance.command] = pg_instance.handle_message
+                    self._command_plugins[pg_instance.command] = pg_instance
                 else:
                     for command in pg_instance.command:
-                        self._commands[command] = pg_instance.handle_message
+                        self._command_plugins[command] = pg_instance
             else:
                 self._generic_plugins.append(pg_instance)
 
     def message(self, user, channel, msg):
         user = user.split('!', 1)[0]
 
-        nick, command, message = utils.parse_message(msg, self._commands.keys())
-        print nick, command, message
+        nick, command, message = utils.parse_message(msg, self._command_plugins.keys())
+
         for plugin in self._generic_plugins:
-            plugin.handle_message(channel, msg)
+            plugin.handle_message(channel=channel, nickname=user, message=message)
 
         if nick and command:
-            self._commands[command](channel, message)
+            self._command_plugins[command].handle_message(channel=channel, nickname=user, message=message, command=command)
