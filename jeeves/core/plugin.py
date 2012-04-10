@@ -5,8 +5,9 @@ class Plugin(object):
 
     def __init__(self, **kwargs):
         self.protocol = kwargs['protocol']
+        self.handler = kwargs['handler']
 
-    def handle_message(self, channel, nick, msg):
+    def handle_message(self, channel=None, nickname=None, command=None, msg=None):
         raise exceptions.NotImplemented('Plugin %s must implement handle_message()' % self.__class__)
 
     def say(self, channel, msg):
