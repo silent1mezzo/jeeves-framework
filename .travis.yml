@@ -12,4 +12,4 @@ branches:
   only:
     - master
 
-script: python setup.py test
+script: python tests/test_jeeves.py
