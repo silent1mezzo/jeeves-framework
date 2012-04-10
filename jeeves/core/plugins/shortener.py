@@ -17,7 +17,7 @@ class ShortenPlugin(CommandPlugin):
             self.say(channel, "%s: %s" % (nickname, self.help_text))
         else:
             self.say(channel, "Shortening %s" % message)
-            
+
     @property
     def help_text(self):
         help_text = [

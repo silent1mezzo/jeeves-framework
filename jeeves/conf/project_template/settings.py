@@ -11,7 +11,7 @@ CHANNEL = '#jeeves'
 
 PLUGINS = (
     #It is strongly recommended that you don't remove these jeeves.* plugins
-    'jeeves.plugins.admin.HelpPlugin',
+    'jeeves.core.plugins.admin.HelpPlugin',
 
     #Here you can add any of the plugins that you create.
     #'plugins.example.ExampleGenericPlugin',
