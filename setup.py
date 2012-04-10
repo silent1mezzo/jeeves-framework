@@ -8,6 +8,7 @@ except ImportError:
     from distutils.core import setup
 
 if sys.argv[-1] == 'publish':
+    os.system("git tag -a v%s -m 'version %s'" % (jeeves.__version__, jeeves.__version__))
     os.system('python setup.py sdist upload')
     sys.exit()
 
