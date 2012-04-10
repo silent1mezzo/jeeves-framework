@@ -17,6 +17,8 @@ if sys.argv[-1] == 'test':
 
 required = ['twisted', 'requests', ]
 packages = [
+    'tests',
+    'docs',
     'jeeves',
     'jeeves.bin',
     'jeeves.conf',
@@ -26,7 +28,6 @@ packages = [
     'jeeves.core.handlers',
     'jeeves.core.management',
     'jeeves.plugins',
-    'jeeves.tests',
     'jeeves.utils',
 ]
 
