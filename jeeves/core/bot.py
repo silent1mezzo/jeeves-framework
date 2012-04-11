@@ -49,14 +49,3 @@ class BotFactory(protocol.ClientFactory):
 
     def clientConnectionFailed(self, connector, reason):
         print "Could not connect: %s" % (reason,)
-
-if __name__ == "__main__":
-    reactor.connectTCP(
-        settings.HOST,
-        settings.PORT,
-        BotFactory(
-            channel=settings.CHANNEL,
-            nickname=settings.NICKNAME
-        )
-    )
-    reactor.run()
