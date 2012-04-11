@@ -20,6 +20,10 @@ class Bot(irc.IRCClient):
 
         #Run any plugins on signon
         self.join(self.factory.channel)
+
+        #Another use already exists with the same username. Update the stored nickname to what IRC gave us
+        if self.nickname != settings.NICKNAME:
+            settings.NICKNAME = self.nickname
         print "Signed on as %s." % self.nickname
 
     def joined(self, channel):
