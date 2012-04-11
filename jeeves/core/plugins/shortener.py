@@ -1,4 +1,22 @@
+from jeeves.conf import settings
 from jeeves.core.plugin import CommandPlugin
+from jeeves.core import exceptions
+import unicodedata
+
+try:
+    import json
+except ImportError:
+    try:
+        import simplejson as json
+    except ImportError:
+        raise ImportError("You need to have a json parser, easy_install simplejson")
+
+import requests
+
+VALID_BACKENDS = [
+    'google',
+    'bitly',
+]
 
 """
     Shorten Plugin.
@@ -9,14 +27,42 @@ class ShortenPlugin(CommandPlugin):
     command = ['shorten', '-s']
 
     def __init__(self, *args, **kwargs):
+        backend = getattr(settings, 'SHORTENER_BACKEND', None)
+        if not backend:
+            raise exceptions.ImproperlyConfigured(
+                "You need to specify SHORTENER_BACKEND in settings.py. Valid backends include: %s" % ', '.join(VALID_BACKENDS)
+            )
+        elif backend not in VALID_BACKENDS:
+            raise exceptions.ImproperlyConfigured(
+                "You must specify a valid backend. Valid backends include: %s" % ', '.join(VALID_BACKENDS)
+            )
+        else:
+            self.backend = backend
+
+        if backend == 'bitly' and not getattr(settings, 'SHORTENER_LOGIN', None) and not getattr(settings, 'SHORTENER_API_KEY', None):
+            raise exceptions.ImproperlyConfigured(
+                "You need to specify SHORTENER_LOGIN and SHORTENER_API_KEY when using bit.ly"
+            )
+
         super(ShortenPlugin, self).__init__(self.name, self.command, *args, **kwargs)
 
     def handle_message(self, channel, nickname, message, command):
         tokenized_msg = message.split()
         if len(tokenized_msg) != 1:
-            self.say(channel, "%s: %s" % (nickname, self.help_text))
+            self.say(nickname, "%s: %s" % (nickname, self.help_text))
         else:
-            self.say(channel, "Shortening %s" % message)
+            if self.backend == 'google':
+                # Grab shortened URL from Google.
+                short_url = shorten_google(tokenized_msg[0])
+
+                if short_url:
+                    # Normalize the unicode string that Google returns into ASCII
+                    short_url = unicodedata.normalize('NFKD', short_url).encode('ascii','ignore')
+                    self.say(nickname, "%s" % short_url)
+                else:
+                    self.say(nickname, "There was an error shortening your link")
+            elif self.backend == 'bitly':
+                self.say(nickname, "I don't currently support shortening links via bit.ly")
 
     @property
     def help_text(self):
@@ -25,3 +71,13 @@ class ShortenPlugin(CommandPlugin):
         ]
 
         return help_text
+
+def shorten_google(url):
+    long_url = "https://www.googleapis.com/urlshortener/v1/url"
+
+    headers = {'content-type': 'application/json'}
+    results = requests.post(long_url, json.dumps(dict(longUrl=url)), headers=headers)
+
+    results = json.loads(results.text)
+    return results.get('id', None)
+
