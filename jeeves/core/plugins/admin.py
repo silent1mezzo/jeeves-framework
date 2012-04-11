@@ -15,15 +15,15 @@ class HelpPlugin(CommandPlugin):
         tokenized_msg = message.split()
 
         if tokenized_msg and tokenized_msg[0] == "list_commands":
-            self.say(channel, "%s: Here's a list of all of the available commands:" % nickname)
+            self.say(nickname, "Here's a list of all of the available commands:")
             for key in self.handler._command_plugins.keys():
-                self.say(channel, "Jeeves: %s" % key)
+                self.say(nickname, "Jeeves: %s" % key)
         elif tokenized_msg and tokenized_msg[0] in self.handler._command_plugins.keys():
             for text in self.handler._command_plugins[tokenized_msg[0]].help_text:
-                self.say(channel, text)
+                self.say(nickname, text)
         else:
             for text in self.help_text:
-                self.say(channel, text)
+                self.say(nickname, text)
 
     @property
     def help_text(self):
