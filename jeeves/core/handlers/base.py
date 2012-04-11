@@ -53,5 +53,5 @@ class BaseHandler(object):
         for plugin in self._generic_plugins:
             plugin.handle_message(channel=channel, nickname=user, message=message)
 
-        if nick and command:
+        if (nick or channel == settings.NICKNAME) and command:
             self._command_plugins[command].handle_message(channel=channel, nickname=user, message=message, command=command)
