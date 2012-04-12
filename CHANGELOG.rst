@@ -1,6 +1,13 @@
 CHANGELOG
 ---------
 
+0.2.0 (2012-04-12)
+++++++++++++++++++
+
+* Help Plugin now displays help in a private message
+* Plugin isolation
+* Jeeves now handles its own nickname changes (`#16 <https://github.com/silent1mezzo/jeeves-framework/issues/16>`_)
+
 0.1.2 (2012-04-09)
 ++++++++++++++++++
 

@@ -27,7 +27,7 @@ packages = [
     'jeeves.core',
     'jeeves.core.handlers',
     'jeeves.core.management',
-    'jeeves.plugins',
+    'jeeves.core.plugins',
     'jeeves.utils',
 ]
 
