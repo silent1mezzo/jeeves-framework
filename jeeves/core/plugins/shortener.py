@@ -52,30 +52,19 @@ class ShortenPlugin(CommandPlugin):
         if len(tokenized_msg) != 1:
             self.say(nickname, "%s: %s" % (nickname, self.help_text))
         else:
+            short_url = None
             if self.backend == 'google':
                 # Grab shortened URL from Google.
                 short_url = shorten_google(tokenized_msg[0])
-
-                if short_url:
-                    # Normalize the unicode string that Google returns into ASCII
-                    short_url = unicodedata.normalize('NFKD', short_url).encode('ascii','ignore')
-                    self.say(nickname, "%s" % short_url)
-                else:
-                    self.say(nickname, "There was an error shortening your link")
             elif self.backend == 'bitly':
                 short_url = shorten_bitly(tokenized_msg[0])
-
-                if short_url:
-                    self.say(nickname, "%s" % short_url)
-                else:
-                    self.say(nickname, "There was an error shortening your link")
             elif self.backend == 'isgd':
                 short_url = shorten_isgd(tokenized_msg[0])
 
-                if short_url:
-                    self.say(nickname, "%s" % short_url)
-                else:
-                    self.say(nickname, "There was an error shortening your link")
+            if short_url:
+                self.say(nickname, "%s" % short_url)
+            else:
+                self.say(nickname, "There was an error shortening your link")
 
     @property
     def help_text(self):

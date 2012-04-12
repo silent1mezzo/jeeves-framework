@@ -27,4 +27,4 @@ SHORTENER_BACKEND = 'google'
 # Login account. Defaults to None
 SHORTENER_LOGIN = None
 # API Key. Defaults to None
-SHORTENER_API = None
+SHORTENER_API_KEY = None
