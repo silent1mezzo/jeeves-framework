@@ -16,6 +16,7 @@ import requests
 VALID_BACKENDS = [
     'google',
     'bitly',
+    'isgd',
 ]
 
 """
@@ -63,6 +64,13 @@ class ShortenPlugin(CommandPlugin):
                     self.say(nickname, "There was an error shortening your link")
             elif self.backend == 'bitly':
                 self.say(nickname, "I don't currently support shortening links via bit.ly")
+            elif self.backend == 'isgd':
+                short_url = shorten_isgd(tokenized_msg[0])
+
+                if short_url:
+                    self.say(nickname, "%s" % short_url)
+                else:
+                    self.say(nickname, "There was an error shortening your link")
 
     @property
     def help_text(self):
@@ -72,6 +80,22 @@ class ShortenPlugin(CommandPlugin):
 
         return help_text
 
+def normalize_unicode(text):
+    return unicodedata.normalize('NFKD', text).encode('ascii','ignore')
+
+def shorten_isgd(url):
+    long_url = "http://is.gd/create.php"
+
+    data = {'format': 'json', 'url': url}
+    results = requests.post(long_url, data=data)
+
+    results = json.loads(results.text)
+    short_url = results.get('shorturl', None)
+    if short_url:
+        return normalize_unicode(short_url)
+    else:
+        return None
+
 def shorten_google(url):
     long_url = "https://www.googleapis.com/urlshortener/v1/url"
 
@@ -79,5 +103,8 @@ def shorten_google(url):
     results = requests.post(long_url, json.dumps(dict(longUrl=url)), headers=headers)
 
     results = json.loads(results.text)
-    return results.get('id', None)
-
+    short_url = results.get('id', None)
+    if short_url:
+        return normalize_unicode(short_url)
+    else:
+        return None
