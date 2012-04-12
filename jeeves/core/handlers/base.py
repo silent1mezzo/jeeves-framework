@@ -45,7 +45,7 @@ class BaseHandler(object):
                             self._command_plugins[command] = pg_instance
                 else:
                     self._generic_plugins.append(pg_instance)
-            except Exception as e:
+            except exceptions.JeevesException, e:
                 if pg_classname:
                     print "%s: %s" % (pg_classname, e)
                 else:

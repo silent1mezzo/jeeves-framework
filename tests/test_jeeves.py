@@ -4,7 +4,7 @@ import unittest
 os.environ.setdefault("JEEVES_SETTINGS_MODULE", "jeeves.conf.project_template.settings")
 from jeeves.conf import settings
 from jeeves.core.handlers import base
-from jeeves.core.exceptions import InvalidPlugin, ImproperlyConfigured
+from jeeves.core.exceptions import JeevesException, ImproperlyConfigured
 
 
 """
@@ -31,26 +31,6 @@ class PluginsTestSuite(unittest.TestCase):
         self.handler.load_plugins()
         self.assertEqual(1, len(self.handler._command_plugins))
         self.assertEqual(1, len(self.handler._generic_plugins))
-
-        settings.PLUGINS = [
-            'tests.plugin_test.ExampleNoNamePlugin',
-        ]
-        self.assertRaises(InvalidPlugin, self.handler.load_plugins)
-
-        settings.PLUGINS = [
-            'tests.plugin_test.ExampleNoCommandPlugin',
-        ]
-        self.assertRaises(InvalidPlugin, self.handler.load_plugins)
-
-        settings.PLUGINS = [
-            'tests.plugin_test.NoneExistent',
-        ]
-        self.assertRaises(ImproperlyConfigured, self.handler.load_plugins)
-
-        settings.PLUGINS = [
-            'tests.test.NoneExistent',
-        ]
-        self.assertRaises(ImproperlyConfigured, self.handler.load_plugins)
 
 """
     Test Suite for Jeeves.core.management
