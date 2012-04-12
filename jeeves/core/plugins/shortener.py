@@ -63,7 +63,12 @@ class ShortenPlugin(CommandPlugin):
                 else:
                     self.say(nickname, "There was an error shortening your link")
             elif self.backend == 'bitly':
-                self.say(nickname, "I don't currently support shortening links via bit.ly")
+                short_url = shorten_bitly(tokenized_msg[0])
+
+                if short_url:
+                    self.say(nickname, "%s" % short_url)
+                else:
+                    self.say(nickname, "There was an error shortening your link")
             elif self.backend == 'isgd':
                 short_url = shorten_isgd(tokenized_msg[0])
 
@@ -82,6 +87,21 @@ class ShortenPlugin(CommandPlugin):
 
 def normalize_unicode(text):
     return unicodedata.normalize('NFKD', text).encode('ascii','ignore')
+
+def shorten_bitly(url):
+    long_url = "https://api-ssl.bitly.com/v3/shorten"
+    login = getattr(settings, 'SHORTENER_LOGIN', None)
+    api_key = getattr(settings, 'SHORTENER_API_KEY', None)
+    data = {'login': login, 'apiKey': api_key, 'longUrl': url, 'format': 'json'}
+
+    results = requests.post(long_url, data=data)
+    results = json.loads(results.text)
+
+    short_url = results.get('data', None)
+    if short_url:
+        return normalize_unicode(short_url.get('url'))
+    else:
+        return None
 
 def shorten_isgd(url):
     long_url = "http://is.gd/create.php"
