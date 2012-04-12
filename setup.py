@@ -10,6 +10,7 @@ except ImportError:
 if sys.argv[-1] == 'publish':
     os.system("git tag -a v%s -m 'version %s'" % (jeeves.__version__, jeeves.__version__))
     os.system('python setup.py sdist upload')
+    os.system('git push --tags')
     sys.exit()
 
 if sys.argv[-1] == 'test':
