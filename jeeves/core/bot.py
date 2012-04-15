@@ -1,11 +1,9 @@
-import sys
-
 from jeeves import __version__ as jeeves_version
 from jeeves.conf import settings
 from jeeves.core.handlers import base
 
 from twisted.words.protocols import irc
-from twisted.internet import protocol, reactor
+from twisted.internet import protocol
 
 class Bot(irc.IRCClient):
     plugins = {}
