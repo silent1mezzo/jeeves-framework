@@ -30,7 +30,8 @@ def run_bot():
         settings.PORT,
         BotFactory(
             channel=settings.CHANNEL,
-            nickname=settings.NICKNAME
+            nickname=settings.NICKNAME,
+            password=settings.PASSWORD,
         )
     )
     reactor.run()

@@ -19,7 +19,7 @@ class Bot(irc.IRCClient):
         self.handler.load_plugins()
 
         #Run any plugins on signon
-        self.join(self.factory.channel)
+        self.join(self.factory.channel, self.factory.password)
 
         #Another use already exists with the same username. Update the stored nickname to what IRC gave us
         if self.nickname != settings.NICKNAME:
@@ -32,6 +32,9 @@ class Bot(irc.IRCClient):
     def privmsg(self, user, channel, msg):
         self.handler.message(user, channel, msg)
 
+    def irc_ERR_PASSWDMISMATCH(self, prefix, params):
+        print 'wrong password'
+
     @property
     def nickname(self):
         return self.factory.nickname
@@ -43,9 +46,10 @@ class Bot(irc.IRCClient):
 class BotFactory(protocol.ClientFactory):
     protocol = Bot
 
-    def __init__(self, channel, nickname):
+    def __init__(self, channel, nickname, password):
         self.channel = channel
         self.nickname = nickname
+        self.password = password
 
     def clientConnectionLost(self, connector, reason):
         print "Lost connection (%s), reconnecting." % (reason,)
