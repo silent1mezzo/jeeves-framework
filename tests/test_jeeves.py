@@ -1,11 +1,14 @@
 import os
 import unittest
+import mock
 
 os.environ.setdefault("JEEVES_SETTINGS_MODULE", "jeeves.conf.project_template.settings")
 from jeeves.conf import settings
-from jeeves.core.handlers import base
+from jeeves.core.bot import BotFactory
 from jeeves.core.exceptions import JeevesException, ImproperlyConfigured
 
+CHANNEL = "#test"
+USERNAME = "tester"
 
 """
     Test Suite for Jeeves bot
@@ -13,14 +16,19 @@ from jeeves.core.exceptions import JeevesException, ImproperlyConfigured
 class JeevesTestSuite(unittest.TestCase):
 
     def setUp(self):
-        pass
+        super(JeevesTestSuite, self).setUp()
+        factory = BotFactory(settings)
+        self.bot = factory.buildProtocol(None)
+
 
 """
     Test Suite for Jeeves Plugins
 """
 class PluginsTestSuite(unittest.TestCase):
     def setUp(self):
-        self.handler = base.BaseHandler()
+        super(PluginsTestSuite, self).setUp()
+        factory = BotFactory(CHANNEL, USERNAME, None)
+        self.bot = factory.buildProtocol(None)
 
     def test_load(self):
         settings.PLUGINS = [
@@ -28,16 +36,24 @@ class PluginsTestSuite(unittest.TestCase):
             'tests.plugin_test.ExampleCommandPlugin',
         ]
 
-        self.handler.load_plugins()
-        self.assertEqual(1, len(self.handler._command_plugins))
-        self.assertEqual(1, len(self.handler._generic_plugins))
+        self.bot.handler.load_plugins()
+        self.assertEqual(1, len(self.bot.handler._command_plugins))
+        self.assertEqual(1, len(self.bot.handler._generic_plugins))
 
-"""
-    Test Suite for Jeeves.core.management
-"""
-class ManagementTestSuite(unittest.TestCase):
-    def setUp(self):
-        pass
+    def test_help(self):
+        settings.PLUGINS = [
+            'jeeves.core.plugins.admin.HelpPlugin',
+        ]
+
+        self.bot.handler.load_plugins()
+        self.assertEqual(2, len(self.bot.handler._command_plugins))
+
+    def test_shortener(self):
+        settings.PLUGINS = [
+            'jeeves.core.plugins.shortener.ShortenPlugin',
+        ]
+        self.bot.handler.load_plugins()
+        self.assertEqual(2, len(self.bot.handler._command_plugins))
 
 """
     Test Suite for Jeeves.conf.settings
