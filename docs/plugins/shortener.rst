@@ -2,5 +2,7 @@
 
 :title: Shortener Plugin
 
-Shortener Plugin
-============
+Shortener Plugin - Soon!
+========================
+
+Coming Soon!

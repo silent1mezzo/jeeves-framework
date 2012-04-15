@@ -20,3 +20,8 @@ or, if pypi is down using `crate.io <http://www.crate.io>`_::
 Getting the Source Code
 -----------------------
 
+Jeeves Framework is actively developed on GitHub, where the code is `always available <https://github.com/silent1mezzo/jeeves-framework>`_.
+
+You can clone the recipe by typing: ::
+
+    $ git clone git://github.com/silent1mezzo/jeeves-framework.git

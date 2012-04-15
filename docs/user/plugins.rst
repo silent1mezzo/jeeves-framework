@@ -2,5 +2,7 @@
 
 :title: Creating Plugins
 
-Creating Plugins
-================
+Creating Plugins - Soon!
+========================
+
+Coming Soon!
