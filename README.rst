@@ -10,6 +10,7 @@ Prerequisites
 +++++++++++++
 
 * `Twisted  <http://twistedmatrix.com/trac/>`_
+* (optional) `pyOpenSSL  <http://pyopenssl.sf.net/>`_
 
 Usage
 +++++

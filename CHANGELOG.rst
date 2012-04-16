@@ -1,6 +1,14 @@
 CHANGELOG
 ---------
 
+0.3.0 (2012-04-16)
+++++++++++++++++++
+
+* Bots can now log in to private channels
+* Bots can now connect over SSL
+* `Requests <>`_ is now an official requirement
+* Added basic documentation
+
 0.2.1 (2012-04-12)
 ++++++++++++++++++
 

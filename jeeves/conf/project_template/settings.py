@@ -2,7 +2,9 @@
 
 
 HOST = 'irc.freenode.net'
-PORT = 6667
+PORT = 6667 # 6697 for SSL
+SSL = False 
+SERVER_PASSWORD = None
 PASSWORD = None
 NICKNAME = 'Jeeves'
 REALNAME = 'Jeeves Bot: A Framework for creating IRC Bots'

@@ -2,6 +2,8 @@
 HOST = 'irc.freenode.net'
 PORT = 6667
 PASSWORD = None
+SSL = False
+SERVER_PASSWORD = None
 NICKNAME = ''
 REALNAME = ''
 CHANNEL = ''

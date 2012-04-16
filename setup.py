@@ -17,7 +17,7 @@ if sys.argv[-1] == 'test':
     os.system('python tests/test_jeeves.py')
     sys.exit()
 
-required = ['twisted', ]
+required = ['twisted', 'requests', ]
 packages = [
     'tests',
     'jeeves',
@@ -51,6 +51,7 @@ setup(
         'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
+        'Programming Language :: Python :: 2.5',
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Natural Language :: English',
