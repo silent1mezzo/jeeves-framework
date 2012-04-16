@@ -1,7 +1,7 @@
 import sys
 import os
 
-from twisted.internet import reactor
+from twisted.internet import reactor, ssl
 from distutils.dir_util import copy_tree
 from jeeves.utils.importlib import import_module
 from jeeves.core.exceptions import InvalidCommand
@@ -25,15 +25,24 @@ def create_project(name):
 def run_bot():
     from jeeves.conf import settings
     from jeeves.core.bot import BotFactory
-    reactor.connectTCP(
-        settings.HOST,
-        settings.PORT,
-        BotFactory(
+    factory = BotFactory(
             channel=settings.CHANNEL,
             nickname=settings.NICKNAME,
-            password=settings.PASSWORD,
-        )
+            password=settings.PASSWORD
     )
+    if settings.SSL == True:
+        reactor.connectSSL(
+                settings.HOST,
+                settings.PORT,
+                factory,
+                ssl.ClientContextFactory()
+        )
+    else:
+        reactor.connectTCP(
+                settings.HOST,
+                settings.PORT,
+                factory
+        )
     reactor.run()
 
 

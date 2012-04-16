@@ -10,6 +10,7 @@ class Bot(irc.IRCClient):
 
     def __init__(self):
         self.handler = base.BaseHandler(self)
+        self.password = settings.SERVER_PASSWORD
         print "Jeeves version %s" % jeeves_version
 
     def signedOn(self):
