@@ -8,3 +8,4 @@ Contributors
 ````````````
 
 - `Ash Christopher <https://github.com/ashchristopher>`_
+- `Ramon (@jush) <https://github.com/jush>`_
