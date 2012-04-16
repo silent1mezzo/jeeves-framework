@@ -2,8 +2,8 @@
 
 
 HOST = 'irc.freenode.net'
-PORT = 6667
-SSL = False
+PORT = 6667 # 6697 for SSL
+SSL = False 
 SERVER_PASSWORD = None
 PASSWORD = None
 NICKNAME = 'Jeeves'
