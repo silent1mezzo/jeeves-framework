@@ -1,10 +1,17 @@
 import sys
 import os
 
-from twisted.internet import reactor, ssl
+from twisted.internet import reactor
 from distutils.dir_util import copy_tree
 from jeeves.utils.importlib import import_module
 from jeeves.core.exceptions import InvalidCommand
+
+try:
+    from twisted.internet import ssl
+except ImportError as err:
+    ssl = None
+    print "SSL support disabled. %s" % err
+
 
 def create_project(name):
     try:
@@ -31,18 +38,21 @@ def run_bot():
             password=settings.PASSWORD
     )
     if settings.SSL == True:
-        reactor.connectSSL(
-                settings.HOST,
-                settings.PORT,
-                factory,
-                ssl.ClientContextFactory()
-        )
+        if ssl:
+            reactor.connectSSL(
+                    settings.HOST,
+                    settings.PORT,
+                    factory,
+                    ssl.ClientContextFactory()
+                    )
+        else:
+            print "Unable to establish an SSL connection."
     else:
         reactor.connectTCP(
                 settings.HOST,
                 settings.PORT,
                 factory
-        )
+                )
     reactor.run()
 
 
