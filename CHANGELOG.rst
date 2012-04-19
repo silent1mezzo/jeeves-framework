@@ -1,6 +1,12 @@
 CHANGELOG
 ---------
 
+0.3.1 (2012-04-19)
+++++++++++++++++++
+
+* Fixed bug with example plugins.
+* No longer supports Python2.5 due to python-requests
+
 0.3.0 (2012-04-16)
 ++++++++++++++++++
 
