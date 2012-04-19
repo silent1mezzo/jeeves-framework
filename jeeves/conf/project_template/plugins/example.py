@@ -7,7 +7,7 @@ class ExampleGenericPlugin(GenericPlugin):
     def __init__(self, *args, **kwargs):
         super(ExampleGenericPlugin, self).__init__(self.name, *args, **kwargs)
 
-    def handle_message(self, channel, message):
+    def handle_message(self, channel, nickname, message):
         self.say(channel, "I am a Generic Plugin")
 
 class ExampleCommandPlugin(CommandPlugin):
@@ -18,5 +18,5 @@ class ExampleCommandPlugin(CommandPlugin):
     def __init__(self, *args, **kwargs):
         super(ExampleCommandPlugin, self).__init__(self.name, self.command, *args, **kwargs)
 
-    def handle_message(self, channel, message):
+    def handle_message(self, channel, nickname, message, command):
         self.say(channel, "I am a Command Plugin")
