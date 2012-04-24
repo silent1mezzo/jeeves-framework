@@ -1,4 +1,6 @@
-# IRC settings
+####################
+# Default Settings #
+####################
 HOST = 'irc.freenode.net'
 PORT = 6667
 PASSWORD = None
@@ -8,9 +10,21 @@ NICKNAME = ''
 REALNAME = ''
 CHANNEL = ''
 
+###########
+# Plugins #
+###########
 PLUGINS = ()
 
-# Default settings for jeeves.core.plugins.ShortenerPlugin
+#############
+# Shortener #
+#############
 SHORTENER_BACKEND = 'google'
 SHORTENER_LOGIN = None
 SHORTENER_API_KEY = None
+
+###########
+#  Cache  #
+###########
+CACHE_BACKEND = None
+CACHE_LOCATION = None
+CACHE_DEFAULT_TIMEOUT = 300
