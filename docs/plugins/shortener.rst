@@ -1,4 +1,4 @@
-.. _shortener:
+.. _shortener_plugin:
 
 :title: Shortener Plugin
 

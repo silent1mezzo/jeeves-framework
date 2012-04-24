@@ -5,4 +5,11 @@
 Creating Plugins - Soon!
 ========================
 
-Coming Soon!
+Getting Started with Plugins
+----------------------------
+
+Creating a Generic Plugin
+-------------------------
+
+Creating a Command Plugin
+-------------------------

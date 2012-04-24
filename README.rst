@@ -21,6 +21,10 @@ The following four commands will get a basic IRC bot up and running. Default plu
 * \`cd <name>`
 * \`python bot.py runbot`
 
+Documentation
++++++++++++++
+You can grab the documentation `here <http://readthedocs.org/docs/jeeves-framework/en/latest/>`_.
+
 Upcoming Features
 +++++++++++++++++
 You can check out our `Issues page  <https://github.com/silent1mezzo/jeeves-framework/issues?labels=feature&sort=created&direction=desc&state=open&page=1>`_ for all of the upcoming features.

@@ -27,10 +27,10 @@ User Guide
 .. toctree::
    :maxdepth: 2
 
-   user/introduction
    user/installation
    user/quickstart
    user/plugins
+   user/contribute
 
 Included Plugins
 ----------------

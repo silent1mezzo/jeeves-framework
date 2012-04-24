@@ -1,4 +1,4 @@
-.. _admin:
+.. _admin_plugin:
 
 :title: Admin Plugin
 
