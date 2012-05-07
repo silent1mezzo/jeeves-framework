@@ -7,6 +7,35 @@ try:
 except ImportError:
     from distutils.core import setup
 
+required = ['twisted', 'requests', ]
+
+def fullsplit(path, result=None):
+    """
+    Split a pathname into components (the opposite of os.path.join) in a
+    platform-neutral way.
+    """
+    if result is None:
+        result = []
+    head, tail = os.path.split(path)
+    if head == '':
+        return [tail] + result
+    if head == path:
+        return result
+    return fullsplit(head, [tail] + result)
+
+packages = []
+root_dir = os.path.dirname(__file__)
+if root_dir != '':
+    os.chdir(root_dir)
+jeeves_dir = 'jeeves'
+
+for dirpath, dirnames, filenames in os.walk(jeeves_dir):
+    # Ignore dirnames that start with '.'
+    for i, dirname in enumerate(dirnames):
+        if dirname.startswith('.'): del dirnames[i]
+    if '__init__.py' in filenames:
+        packages.append('.'.join(fullsplit(dirpath)))
+
 if sys.argv[-1] == 'publish':
     os.system("git tag -a v%s -m 'version %s'" % (jeeves.__version__, jeeves.__version__))
     os.system('python setup.py sdist upload')
@@ -16,24 +45,6 @@ if sys.argv[-1] == 'publish':
 if sys.argv[-1] == 'test':
     os.system('python tests/test_jeeves.py')
     sys.exit()
-
-required = ['twisted', 'requests', ]
-packages = [
-    'tests',
-    'jeeves',
-    'jeeves.bin',
-    'jeeves.conf',
-    'jeeves.conf.project_template',
-    'jeeves.conf.project_template.plugins',
-    'jeeves.core',
-    'jeeves.core.handlers',
-    'jeeves.core.management',
-    'jeeves.core.plugins',
-    'jeeves.core.cache',
-    'jeeves.contrib',
-    'jeeves.contrib.plugins',
-    'jeeves.utils',
-]
 
 setup(
     name="jeeves-framework",
