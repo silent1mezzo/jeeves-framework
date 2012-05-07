@@ -51,7 +51,7 @@ class PluginsTestSuite(unittest.TestCase):
 
     def test_shortener(self):
         settings.PLUGINS = [
-            'jeeves.core.plugins.shortener.ShortenPlugin',
+            'jeeves.contrib.plugins.shortener.ShortenPlugin',
         ]
         self.bot.handler.load_plugins()
         self.assertEqual(2, len(self.bot.handler._command_plugins))
