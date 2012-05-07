@@ -29,6 +29,9 @@ packages = [
     'jeeves.core.handlers',
     'jeeves.core.management',
     'jeeves.core.plugins',
+    'jeeves.core.cache',
+    'jeeves.contrib',
+    'jeeves.contrib.plugins',
     'jeeves.utils',
 ]
 
