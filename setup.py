@@ -23,7 +23,7 @@ def fullsplit(path, result=None):
         return result
     return fullsplit(head, [tail] + result)
 
-packages = []
+packages = ['tests']
 root_dir = os.path.dirname(__file__)
 if root_dir != '':
     os.chdir(root_dir)
