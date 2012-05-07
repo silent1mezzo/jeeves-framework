@@ -1,6 +1,13 @@
 CHANGELOG
 ---------
 
+0.4.0 (2012-05-07)
+++++++++++++++++++
+
+* Adds cache support (local memory and memcached)
+* Adds TicketBot Plugin
+* Moved ShortenerPlugin from jeeves.core to jeeves.contrib (BACKWARDS INCOMPATIBILITY)
+
 0.3.1 (2012-04-19)
 ++++++++++++++++++
 
