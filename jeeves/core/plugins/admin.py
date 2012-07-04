@@ -1,5 +1,5 @@
 from jeeves.core.plugin import CommandPlugin
-
+from jeeves.conf import settings
 """
     Help Plugin.
     A basic Jeeves plugin that displays help messages for the user. T
@@ -28,9 +28,9 @@ class HelpPlugin(CommandPlugin):
     @property
     def help_text(self):
         help_text = [
-            "usage: Jeeves: [help|-h] [list_commands] [command_name]",
-            "To list available plugins `Jeeves: help list_commands`",
-            "To get specific help for a plugin `Jeeves: help [command_name]`",
+            "usage: %s: [help|-h] [list_commands] [command_name]" % settings.NICKNAME,
+            "To list available plugins `%s: help list_commands`" % settings.NICKNAME,
+            "To get specific help for a plugin `%s: help [command_name]`" % settings.NICKNAME,
         ]
 
         return help_text

@@ -69,7 +69,7 @@ class ShortenPlugin(CommandPlugin):
     @property
     def help_text(self):
         help_text = [
-            "usage: Jeeves: [shorten|-s] <link>",
+            "usage: %s: [shorten|-s] <link>" % settings.NICKNAME,
         ]
 
         return help_text
