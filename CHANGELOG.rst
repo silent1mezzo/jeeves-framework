@@ -1,6 +1,11 @@
 CHANGELOG
 ---------
 
+0.4.1 (2012-07-04)
+++++++++++++++++++
+
+* Fixes hardcoded Bot names (`# 36 <https://github.com/silent1mezzo/jeeves-framework/issues/36>`_)
+
 0.4.0 (2012-05-07)
 ++++++++++++++++++
 
